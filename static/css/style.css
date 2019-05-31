@@ -1,0 +1,78 @@
+tbody>tr:hover {
+  background-color: #666699 !important;
+}
+
+td:hover {
+    opacity: .5;
+}
+
+#ufo {
+    position: relative;
+    /* top: 5em;
+    left: 10em; */
+    transform: rotate(-45deg);
+}
+
+
+#triangle {
+    width: 0;
+    height: 0;
+    transform: translate(15px);
+    border-left: 25px solid gold;
+    border-top: 60px solid transparent;
+    opacity: .5;
+    z-index:1;
+  }
+
+#circle {
+    position: absolute;
+    left: 10px;
+    width: 20px;
+    height: 20px;
+    background: #00CCFF;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+#oval {
+    position: absolute;
+    top: 10px;
+    width: 40px;
+    height: 20px;
+    background: grey;
+    border-radius: 50%;
+    z-index:3;
+  }
+
+.light {
+    position: absolute;
+    width: 5px;
+    height:3px;
+    background: #800000;
+    border-radius: 50%;
+    z-index: 4;
+}
+
+.light1{
+    position: absolute;
+    top: 15px;
+    left: 2.5px;
+}
+
+.light2{
+    position: absolute;
+    top: 20px;
+    left: 12.5px;
+}
+
+.light3{
+    position: absolute;
+    top: 20px;
+    left: 22.5px;
+}
+
+.light4{
+    position: absolute;
+    top: 15px;
+    left: 32.5px;
+}

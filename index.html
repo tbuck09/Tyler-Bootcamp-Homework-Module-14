@@ -4,10 +4,16 @@
 <head>
   <meta charset="utf-8">
   <title>UFO Finder</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-  <link rel="stylesheet" href="static/css/style.css">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu"
+        rel="stylesheet">
+  <link rel="stylesheet"
+        href="static/css/style.css">
+  <link rel="stylesheet"
+        href="static/css/dropdown.css">
 </head>
 
 <body>
@@ -15,8 +21,8 @@
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="index.html">UFO Sightings
-            <!-- <img class="nav-ufo" src="static/images/ufo.png"> -->
+          <a class="navbar-brand"
+             href="index.html">UFO Sightings
           </a>
         </div>
       </div>
@@ -27,54 +33,82 @@
     </div>
     <div class="container">
       <div class="row margin-top-50">
-        <div class="col-md-2">
-            <div id= "ufo">
-              <div id="oval"></div>
-              <div class="light light1"></div>
-              <div class="light light2"></div>
-              <div class="light light3"></div>
-              <div class="light light4"></div>
-              <div id= "circle"></div>
-              <div id="triangle"></div>
-            </div>
+        <div class="col-md-4">
+          <div id="ufo">
+            <div id="oval"></div>
+            <div class="light light1"></div>
+            <div class="light light2"></div>
+            <div class="light light3"></div>
+            <div class="light light4"></div>
+            <div id="circle"></div>
+            <div id="triangle"></div>
+          </div>
           <aside class="filters">
             <div class="panel panel-default">
               <div class="panel-heading">Filter Search</div>
-              <div class="panel-body">
+              <div class="panel-body row">
+                <button id="filter-btn"
+                        type="submit"
+                        class="btn btn-default">Filter Table</button>
                 <form>
-                  <div class="form-group">
-                    <ul class="list-group" id="filters">
-                      <li class="filter list-group-item">
-                        <label for="date">Enter a Date</label>
-                        <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
-                      </li>
-                      <li class="filter list-group-item">
-                        <label for="city">Enter a City name</label>
-                        <input class="form-control" id="city" type="text" placeholder= "benton">
-                      </li>
-                      <li class="filter list-group-item">
-                        <label for="city">Enter a State name (abbreviated)</label>
-                        <input class="form-control" id="state" type="text" placeholder= "ar">
-                      </li>
-                      <li class="filter list-group-item">
-                        <label for="city">Enter a Country name (abbreviated)</label>
-                        <input class="form-control" id="country" type="text" placeholder= "us">
-                      </li>
-                      <li class="filter list-group-item">
-                        <label for="city">Enter a Shape</label>
-                        <input class="form-control" id="shape" type="text" placeholder= "circle">
-                      </li>
-                    </ul>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <ul class="list-group left-group"
+                          id="filters-left">
+                        <li class="filter list-group-item">
+                          <label for="date">Enter a Date</label>
+                          <input class="form-control"
+                                 id="datetime"
+                                 type="text"
+                                 placeholder="1/10/2010">
+                        </li>
+                        <li class="filter list-group-item">
+                          <label for="city">Enter a City name</label>
+                          <input class="form-control"
+                                 id="city"
+                                 type="text"
+                                 placeholder="benton">
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  <button id="filter-btn" type="submit" class="btn btn-default">Filter Table</button>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <ul class="list-group right-column"
+                          id="filters-right">
+                        <li class="filter list-group-item">
+                          <label for="city">Enter a State name (abbreviated)</label>
+                          <input class="form-control"
+                                 id="state"
+                                 type="text"
+                                 placeholder="ar">
+                        </li>
+                        <li class="filter list-group-item">
+                          <label for="city">Enter a Country name (abbreviated)</label>
+                          <input class="form-control"
+                                 id="country"
+                                 type="text"
+                                 placeholder="us">
+                        </li>
+                        <li class="filter list-group-item">
+                          <label for="city">Enter a Shape</label>
+                          <select id="shape" onchange="console.log(this.value)">
+                              <option value="">Shape</option>
+                          </select>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
           </aside>
         </div>
-        <div class="col-md-10">
-          <div id="table-area" class="">
-            <table id="ufo-table" class="table table-striped">
+        <div class="col-md-8">
+          <div id="table-area"
+               class="">
+            <table id="ufo-table"
+                   class="table table-striped">
               <thead>
                 <tr>
                   <th class="table-head">Date</th>
@@ -98,7 +132,7 @@
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
   <script src="static/js/data.js"></script>
-  <script src="static/js/main.js"></script>
+  <script src="static/js/main_bonus.js"></script>
 </body>
 
 </html>

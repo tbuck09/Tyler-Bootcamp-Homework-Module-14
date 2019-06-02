@@ -76,3 +76,12 @@ td:hover {
     top: 15px;
     left: 32.5px;
 }
+
+#filter-btn{
+    color: white;
+    font-weight: bold;
+    background-color: #3e4e68;
+}
+#filter-btn:hover{
+    background-color: #142e59;
+}

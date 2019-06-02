@@ -1,44 +1,90 @@
-var tbody= d3.select("tbody")
+/////////////////////////
+// Load the table upon opening the page
+/////////////////////////
 
+// Select the table body
+var tbody = d3.select("tbody")
+// Add a row for each object in data.js
 data.forEach(observation => {
-  var tRow= tbody.append("tr");
+  var tRow = tbody.append("tr");
   Object.values(observation)
-      .forEach(value => {
-          tRow.append("td").text(value);
-      } 
-      );
+    .forEach(value => {
+      tRow.append("td").text(value);
+    }
+    );
 });
-
+// Log the length to make sure it works
 console.log(data.length);
-console.log(typeof data);
-
-var filterButton= d3.select("#filter-btn");
-
-var dateInputElement= d3.select("input");
 
 
-dateInputElement.on('change', function() {
-  var dateInputEntry= dateInputElement.property('value');
-  console.log(dateInputEntry);
-});
+/////////////////////////
+//////////////////////////////////////////////////
+// Create behavior for filter button
+// This should return only the rows that are specified in the filter field (left column)
+//////////////////////////////////////////////////
+/////////////////////////
 
-filterButton.on("click", function() {
+// Select the filter button
+var filterButton = d3.select("#filter-btn");
+
+// Select the fields for entering desired filter terms
+var dateInputElement = d3.select("#datetime");
+var cityInputElement = d3.select("#city");
+var stateInputElement = d3.select("#state");
+var countryInputElement = d3.select("#country");
+var shapeInputElement = d3.select("#shape");
+
+
+// Create function that allows for filtering on multiple keys
+function filter_many(arr, filt) {
+  var filtKeys = Object.keys(filt);
+  return arr.filter(item => {
+    return filtKeys.every(key => {
+      // Allows for empty fields
+      if (filt[key].length == 0) return true;
+      return filt[key].includes(item[key]);
+    });
+  });
+};
+
+
+/////////////////////////
+// Create behavior for filter button clicks
+/////////////////////////
+
+filterButton.on("click", function () {
+  // Resist reloading of the page
   d3.event.preventDefault();
-
+  // Remove all rows from the page
   tbody.selectAll("tr").remove();
   
-  var dateInputEntry= dateInputElement.property('value');
+  // Assign values in the filter entry fields to variables
+  var dateInputEntry = dateInputElement.property('value');
+  var cityInputEntry = cityInputElement.property('value');
+  var stateInputEntry = stateInputElement.property('value');
+  var countryInputEntry = countryInputElement.property('value');
+  var shapeInputEntry = shapeInputElement.property('value');
+  
+  // Add values to an object for passing into the filter function
+  var filter = {
+    datetime: dateInputEntry,
+    city: cityInputEntry,
+    state:stateInputEntry,
+    country:countryInputEntry,
+    shape:shapeInputEntry
+  };
 
-  var dateMatch= data.filter(observation => {
-    return observation.datetime == dateInputEntry;
-  });
-  console.log(dateMatch.length);
+  // Save results from filter function to a variable
+  var searchResults = filter_many(data, filter);
+  // Log length to make sure it worked
+  console.log(searchResults.length);
 
-  dateMatch.forEach(observation => {
-    var tRow= tbody.append("tr");
+  // Append rows from the filter to the table body
+  searchResults.forEach(observation => {
+    var tRow = tbody.append("tr");
     Object.values(observation)
       .forEach(value => {
-          tRow.append("td").text(value);
-    });
+        tRow.append("td").text(value);
+      });
   });
 });

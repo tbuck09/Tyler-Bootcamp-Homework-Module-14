@@ -17,6 +17,69 @@ data.forEach(observation => {
 console.log(data.length);
 
 
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+function dropdownFunction() {
+  document.getElementById("shapeDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var i;
+      for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+          }
+      }
+  }
+}
+
+
+/////////////////////////
+// Get unique Shape values to add into a drop-down box
+/////////////////////////
+
+// Assign values of Shape to a Set to gather only unique values into array
+var shapeArray= data.map(value => value.shape)
+
+// Create function for creating an array out of unique values
+function getUnique(arr) {
+uniqueArr= []
+arr.forEach(item => {
+  if (!uniqueArr.includes(item)) {
+    uniqueArr.push(item)
+  }
+});
+return uniqueArr
+};
+
+// Call the function to create the array
+var shapeUnique= getUnique(shapeArray)
+
+// Append items to dropdown menu
+shapeUnique.forEach(shape => {
+  var menuShape= document.createElement("option");
+  var textShape= document.createTextNode(shape);
+  menuShape.value= shape;
+  menuShape.appendChild(textShape);
+  document.getElementById("shape").appendChild(menuShape);
+});
+
+// Bind actions to dropdown button
+var shapeSelect= d3.select("shape")
+
+shapeSelect.on("click", function() {
+  d3.event.preventDefault();
+  dropdownFunction();
+});
+
+
+
+
+
 /////////////////////////
 //////////////////////////////////////////////////
 // Create behavior for filter button
